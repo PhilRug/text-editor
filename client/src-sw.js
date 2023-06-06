@@ -39,9 +39,9 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-this.addEventListener('fetch', function (event) {
-  // This fetch function is required for the SW to be detected and is intentionally empty
-  // For a more robust, real-world SW example see: https://developers.google.com/web/fundamentals/primers/service-workers
-});
+// this.addEventListener('fetch', function (event) {
+//   // This fetch function is required for the SW to be detected and is intentionally empty
+//   // For a more robust, real-world SW example see: https://developers.google.com/web/fundamentals/primers/service-workers
+// });
 
 registerRoute();
