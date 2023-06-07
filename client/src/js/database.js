@@ -32,7 +32,7 @@ export const putDb = async (content) => {
   const store = tx.objectStore('jate');
 
   // Use the .add() method to store the content in the object store.
-  await store.add(content);
+  await store.put({id:1, value:content});
 
   // Complete the transaction.
   await tx.complete;
@@ -46,10 +46,10 @@ export const getDb = async () => {
   const db = await getDBInstance();
   const tx = db.transaction(['jate'], 'readonly');
   const store = tx.objectStore('jate');
-  const request = store.getAll();
+  const request = store.get(1);
   const result = await request;
   console.log('result.value', result);
-  return result;
+  return result?.value;
 };
 
 initdb();
