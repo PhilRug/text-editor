@@ -39,9 +39,21 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// this.addEventListener('fetch', function (event) {
-//   // This fetch function is required for the SW to be detected and is intentionally empty
-//   // For a more robust, real-world SW example see: https://developers.google.com/web/fundamentals/primers/service-workers
-// });
 
-registerRoute();
+registerRoute(
+  /\.(?:png|gif|jpg|jpeg|svg)$/,
+new CacheFirst({
+  cacheName: 'asset-cache',
+  plugins: [
+    new CacheableResponsePlugin({
+      statuses: [0, 200],
+    }),
+    new ExpirationPlugin({
+      maxEntries: 50,
+      maxAgeSeconds: 7 * 24 * 60 * 60,
+    }),
+  ],
+})
+);
+
+offlineFallback();

@@ -16,7 +16,7 @@ const initdb = async () =>
 export const putDb = async (content) => {
   console.log('PUT from the database', content);
   const jate = await openDB('jate', 1);
-  const tx = jate.transaction('jate', 'readwrite');
+  const tx = jate.transaction(['jate'], 'readwrite');
   const store = tx.objectStore('jate');
   
   // Use the .add() method to store the content in the object store.
@@ -34,7 +34,7 @@ export const getDb = async () => {
   // Create a connection to the database database and version we want to use.
   const jate = await openDB('jate', 1);
   // Create a new transaction and specify the database and data privileges.
-  const tx = jate.transaction('jate', 'readonly');
+  const tx = jate.transaction(['jate'], 'readonly');
   // Open up the desired object store.
   const store = tx.objectStore('jate');
   // Use the .getAll() method to get all data in the database.
